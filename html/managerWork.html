@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Responsiive Admin Dashboard | CodingLab</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+        .nav-links li.active,
+        .nav-links li:hover {
+          background-color: #3498db; /* Màu nền khi được chọn hoặc di chuột qua */
+          color: #fff; /* Màu chữ khi được chọn hoặc di chuột qua */
+        }
+      </style>
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        
+        <span style="margin-left: 22px;" class="logo_name">Manager Work</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="../index.html" >
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="managerCategory.html">
+            <i class="bx bx-box"></i>
+            <span class="links_name">Quản lý danh mục</span>
+          </a>
+        </li>
+        <li>
+          <a href="managerJob.html">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">Quản lý công việc</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="links_name">Quản lý văn bản</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="#">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <section class="home-section">
+      
+
+      <div class="home-content">
+
+        <div class="sales-boxes">
+          <div class="recent-sales box">
+            <p>Quản lý văn bản</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        let navLinks = document.querySelectorAll(".nav-links li");
+    
+        // Kiểm tra trạng thái từ localStorage khi trang được tải
+        if (localStorage.getItem("sidebarState") === "active") {
+          sidebar.classList.add("active");
+          sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        }
+    
+        sidebarBtn.onclick = function () {
+          sidebar.classList.toggle("active");
+    
+          if (sidebar.classList.contains("active")) {
+            sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            // Lưu trạng thái vào localStorage khi thanh bên được mở
+            localStorage.setItem("sidebarState", "active");
+          } else {
+            sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+            // Xóa trạng thái khỏi localStorage khi thanh bên được đóng
+            localStorage.removeItem("sidebarState");
+          }
+        };
+    
+        // Thêm sự kiện click cho từng mục trong thanh bên
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function () {
+            // Xóa class "active" từ tất cả các mục
+            navLinks.forEach(function (item) {
+              item.classList.remove("active");
+            });
+    
+            // Thêm class "active" cho mục được click
+            link.classList.add("active");
+          });
+        });
+      </script>
+  </body>
+</html>
